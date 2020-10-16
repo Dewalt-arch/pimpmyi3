@@ -14,11 +14,15 @@
     -  The final results of pimpmy-i3.sh were recently featured on the BlindPentesters Twitch Stream (Sar2HTML Vulnhub box).
   https://www.twitch.tv/blindpentester BPT is also the creator of 'the_essentials.sh' script which will be called at the
   end of pimpmy-i3.sh via pimpmykali.sh --bpt command line option. A huge shoutout to BlindPenTester!
-  - Menu option 3 is hearby dedicated to BlindPenTester for all time 
+  - Menu option 3 is hearby dedicated to BlindPenTester for all time
 
   It is suggested this be used only on a fresh imported kali vm
   although should work on already existing installs, warning your mileage
   may vary on pre-installed systems.
+
+  - Menu Options 1 and 4 are specifically for ROOT user
+  - Menu Options 2 and 5 are specifically for a NON-ROOT user
+  - Menu Option 3... well your mileage may vary
 
 # Installation script
   - #!/bin/bash
