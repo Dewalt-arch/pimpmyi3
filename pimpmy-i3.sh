@@ -611,13 +611,13 @@ pimpmyi3_menu () {
   clear
   echo -e "$asciiart"
   echo -e "\n    Select an option from menu:                      Rev:$revision"
-  echo -e "\n    1 - pimpmy-i3 for $runner and run as $runner all the time"
+  echo -e "\n    1 - pimpmy-i3 for user $runner and run as $runner all the time"
   echo -e "        i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
   echo -e "        + lightdm autologin-user=$runner lightdm autologin-session=i3"
   echo -e "        + all default base configs included in pimpmy-i3"
   echo -e "        + pimpmykali --all and --bpt (bpt the_essentials)\n"
   #
-  echo -e "    2 - pimpmy-i3 for $finduser (NOT FOR ROOT) and run as $finduser all the time"
+  echo -e "    2 - pimpmy-i3 for user $finduser (NOT FOR ROOT) and run as $finduser all the time"
   echo -e "        i3-gaps compton feh flameshot numlockx rofi terminator"
   echo -e "        + lightdm autologin-user=$finduser lightdm autologin-session=i3"
   echo -e "        + all default base configs included in pimpmy-i3"
@@ -625,7 +625,7 @@ pimpmyi3_menu () {
   echo -e "        #2 DO NOT USE FOR ROOT! if this says root your already root!!\n"
   # menu option 3 is hearby dedicated to : BlindPenTester and shall remain for all time
   echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
-  echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
+  echo -e "        - Whatever you get you get Dewalt is NOT sorting it out!"
   echo -e "        - BlindPentester will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
   echo -e "    4 - pimpmy-i3 for user $runner without pimpmykali.sh --all or --bpt"
