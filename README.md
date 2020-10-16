@@ -9,9 +9,9 @@ pimpmyi3.sh
   Several have requested this script and that it be made publicly available on github. So here it is! Have fun! 
 
   - BlindPenTester (BPT)
-  The final results of pimpmy-i3.sh was recently featured on the BlindPentesters Twitch Stream (Sar2HTML Vulnhub box).
+    -  The final results of pimpmy-i3.sh were recently featured on the BlindPentesters Twitch Stream (Sar2HTML Vulnhub box).
   https://www.twitch.tv/blindpentester BPT is also the creator of 'the_essentials.sh' script which will be called at the 
-  end of pimpmy-i3.sh via pimpmykali.sh --bpt command line option. A huge shoutout to BlindPenTester! Thanks BPT!
+  end of pimpmy-i3.sh via pimpmykali.sh --bpt command line option. A huge shoutout to BlindPenTester!
   
   It is suggested this be used only on a fresh imported kali vm 
   although should work on already existing installs, warning your mileage 
