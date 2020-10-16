@@ -607,7 +607,7 @@ run_far_far_away () {
   echo -e "\n\n\n  You thought I was kidding?? Last Chance Buddy... I am NOT Sorting this out!"
   read -n1 -p "  Are you really really sure you want to do this? (Y/N): " lookout_thisisgoingtobeugly
   case $lookout_thisisgoingtobeugly in
-    y|Y) clear; echo -e "$option3\n\n  pimpmy-i3.sh -- system halted "; exit_screen ;;
+    y|Y) clear; echo -e "$red$option3$green\n\n  pimpmy-i3.sh -- system halted "; exit_screen ;;
     n|N) echo -e "\n\n  Chicken... No guts no glory!"; exit_screen ;;
       *) run_far_far_away ;;
   esac
