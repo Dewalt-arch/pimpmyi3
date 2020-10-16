@@ -581,6 +581,14 @@ run_i3_root () {
   exit_screen
   }
 
+run_i3_root_only (){
+  i3_shutup_pcbeep
+  i3_adbobe_source_code_pro_font
+  i3_fix_root     # all functions for root are in this function
+  wget $url -O $root_background
+  exit_screen
+}
+
 run_i3_user () {
   i3_shutup_pcbeep
   i3_adbobe_source_code_pro_font
@@ -589,6 +597,15 @@ run_i3_user () {
   pimpmykali_all_your_upgrades_belong_to_me
   exit_screen
   }
+
+run_i3_user_only () {
+  i3_shutup_pcbeep
+  i3_adbobe_source_code_pro_font
+  i3_fix_user     # all functions for user are in this function
+  wget $url -O $user_background
+  exit_screen
+  }
+
 
 pimpmyi3_menu () {
   clear
@@ -611,7 +628,10 @@ pimpmyi3_menu () {
   echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
   echo -e "        - BlindPentester will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
-  #
+  echo -e "    4 - pimpmy-i3 for $runner   without pimpmykali.sh --all or --bpt"
+  echo -e "        only runs pimpmy-i3.sh for user $runner with no additional upgrades\n"
+  echo -e "    5 - pimpmy-i3 for $finduser without pimpmyakli.sh --all or --bpt"
+  echo -e "        only runs pimpmy-i3.sh for user $finduser with no additional upgrades\n"
   echo -e "    -- Upgrade Only Options -- \n"
   echo -e "    P - Only pimpmykali --all"
   echo -e "    B - Only BlindPenTester the_essentials (pimpmykali --bpt)"
@@ -622,6 +642,8 @@ pimpmyi3_menu () {
     1) run_i3_root ;;
     2) run_i3_user ;;
     3) run_far_far_away ;;
+    4) run_i3_root_only ;;
+    5) run_i3_user_only ;;
   p|P) pimpmykali_all ;;
   b|B) pimpmykali_bpt ;;
   a|A) pimpmykali_all_your_upgrades_belong_to_me ;; # What you thought I was kidding?
