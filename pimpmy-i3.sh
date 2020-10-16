@@ -650,7 +650,7 @@ pimpmyi3_menu () {
   #
   echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
   echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
-  echo -e "        - BlindPentester Will provide 100% free in person technical support!"
+  echo -e "        - BlindPentester will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
   #
   echo -e "    -- Upgrade Only Options -- \n"
