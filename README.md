@@ -1,4 +1,4 @@
-pimpmyi3.sh 
+pimpmyi3.sh (initial README.md) - script is not yet live on github
 
   This script is for a 1 shot 1 and done run to setup i3 window manager
   (i3-gaps actually) And all related base components to a fully functional 
