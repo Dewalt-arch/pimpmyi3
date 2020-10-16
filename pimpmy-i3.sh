@@ -310,7 +310,6 @@ cfnIf3y8+hpXJfGXHHXo9a7Grd3drsoCofO00zu1fxj4fzv1dLevcum9zsGGwJ75L8hMoKLOpckB
 FeVGWtp9zMnkqmGUK2SO1v+akVt8wR6fusu+AsNu/mZ/+Of5+czV8p7Tt+f/+B4XzJtKL979iNRL
 66Y/Lv4H8kTgoVQbAAA=" | gunzip )
 
-
 check_for_root () {
   if [ "$EUID" -ne 0 ]
     then echo -e "\n\n Script must be run with sudo ./pimpmy-i3.sh or as root \n"
