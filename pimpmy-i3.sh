@@ -628,7 +628,7 @@ pimpmyi3_menu () {
   echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
   echo -e "        - BlindPentester will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
-  echo -e "    4 - pimpmy-i3 for user $runner   without pimpmykali.sh --all or --bpt"
+  echo -e "    4 - pimpmy-i3 for user $runner without pimpmykali.sh --all or --bpt"
   echo -e "        only runs pimpmy-i3.sh for user $runner with no additional upgrades\n"
   echo -e "    5 - pimpmy-i3 for user $finduser without pimpmyakli.sh --all or --bpt"
   echo -e "        only runs pimpmy-i3.sh for user $finduser with no additional upgrades"
