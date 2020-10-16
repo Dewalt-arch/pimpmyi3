@@ -606,7 +606,7 @@ pimpmyi3_menu () {
   echo -e "        + all default base configs included in pimpmy-i3"
   echo -e "        + pimpmykali --all and --bpt (bpt the_essentials)"
   echo -e "        DO NOT USE FOR ROOT! if this says root your already root!!\n"
-  #
+  # menu option 3 is hearby dedicated to : BlindPenTester 
   echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
   echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
   echo -e "        - BlindPentester will provide 100% free in person technical support!"
