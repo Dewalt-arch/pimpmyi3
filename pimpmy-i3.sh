@@ -516,15 +516,6 @@ i3_fix_root () {
   sudo -u $runner chsh --shell /bin/zsh
   echo -e "\n  $greenplus shell changed to zsh for $runner"
 
-  # specific for atom atom isnt installed here , have blind add this to
-  # the_esssntials or install atom myself
-  # fix atom --no-sandbox
-  # apm install seti-ui
-  # apm install atom-black-syntax
-  # mv /usr/bin/atom /usr/bin/atom-start
-  # echo -e "atom-start --no-sandbox \$1" > /usr/bin/atom
-  # chmod +x /usr/bin/atom
-
   # cleanup (this could be made a function nothing specific here)
   rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf
   echo -e "\n  $greenplus cleanup rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf"
@@ -539,37 +530,6 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   fc-cache -fsv
   echo -e "\n  $greenplus fonts cache updated"
   }
-
-# Might add this function to pimpmykali.sh
-# i3_lightdm-config_autologin_user () {
-  # need to determine whos going to be using the machine user or root?
-  # eval cat /etc/lightdm/lightdm.conf | sed 's/#autologin-user=/autologin-user='$runner'/' > /tmp/lightdm.conf
-  # cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
-  # cat /etc/lightdm/lightdm.conf | sed 's/#autologin-session=/autologin-session=i3/' > /tmp/lightdm.conf
-  # cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
-  # }
-
-# Might implement this in pimpmykali.sh
-# i3_fix_bashrc () {
-  # bashrc for /root/.bashrc
-  # make backup of .bashrc
-  # cp /$runner/.bashrc /$runner/.bashrc-backup-$backupdate
-  # generate new .bashrc with path statement (MAY DO THIS FOR .ZSHRC!)
-  # eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
-  # cat /tmp/path_export /etc/skel/.bashrc  > ~/.bashrc
-  # source /$runner/.bashrc
-  # generate new custom .zshrc from base64 encoded
-  # dosent have that stupid skull on root or that circle-k on kali user
-  # export PATH=$PATH:/sbin:/usr/sbin already included in base64 encoded file
-  # echo -e "$dot_zshrc" > /$runner/.zshrc
-  # }
-
-# function was included in both run_i3_root and run_i3_user
-# i3_xfce_power_manager (){           # Might use this function in pimpmykali.sh
-  # ~/.config/xfce4/xfconf/xfce-perchannel-xml
-  # echo -e "$xfce_power_config" > /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml
-  # echo -e "$xfce_power_config" > /$runner/.config/xfce4/xfconf/xfce-perchannel-xml
-  # }
 
 i3_shutup_pcbeep () {
   echo -e "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
