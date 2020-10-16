@@ -1,6 +1,6 @@
-pimpmyi3.sh (initial README.md) - script is not yet live on github
+#pimpmyi3.sh (initial README.md) - script is not yet live on github
 
-- Initial Release: Revision "Alpha"
+# Initial Release: Revision "Alpha"
 
   This script is for a 1 shot 1 and done run to setup i3 window manager
   (i3-gaps actually) And all related base components to a fully functional
@@ -19,29 +19,30 @@ pimpmyi3.sh (initial README.md) - script is not yet live on github
   although should work on already existing installs, warning your mileage
   may vary on pre-installed systems.
 
-- Installation script
+# Installation script
   - #!/bin/bash
   - rm -rf pimpmyi3/
   - git clone https://github.com/Dewalt-arch/pimpmyi3
   - cd pimpmyi3
   - sudo ./pimpmy-i3.sh   
 
-What pimpmy-i3.sh is going to do:
+# What pimpmy-i3.sh is going to do:
 
 - PC Speaker Beep turned off ( i3_shutup_pcbeep function )
   - function adds blacklist pcspkr to /etc/modprobe.d/nobeep.conf
 
-- Sets User and Root i3 background
+- Sets User or Root i3 background
   - uses $url variable in script to download background from Internet
     - a few additional backgrounds have been included in the script
     - uncomment ONE url=  statments at the top of the script
     - or change it to to the url of an image of your choice!
+    - ~/Pictures/background.jpg
 
 - Pre-configured ~/.config/i3/config
   - set $modkey Mod1    (alt key)
   - modkey can be changed after installation
     - default: set $modkey Mod1 (alt key)
-    - to set windows key change to : set $modkey Mod4     
+    - to set windows key change : set $modkey Mod4     
   - I prefer the alt key if you want the windows key, change it
 
 - Pre-configured /etc/i3status.conf
@@ -57,7 +58,7 @@ What pimpmy-i3.sh is going to do:
 - Pre-configured /usr/bin/i3-alt-tab.py
   - required for modkey+tab and modkey+shfit+tab in i3
     - modkey(alt)+tab tabs between open windows on 1 virtual desktop
-    - modkey(win)+shift+tab tabs between all open windows on all open virutal desktops
+    - modkey(win)+shift+tab tabs between all open windows on all open virtual desktops
   - symlink from /usr/bin/i3-alt-tab.py to ~/.config/i3/i3-alt-tab.py
 
 - Pre-configured ~/.config/terminator/config
