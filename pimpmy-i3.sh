@@ -426,7 +426,7 @@ i3_fix_root () {
 # /root/.config
   # put checks in here for already existing dirs if exist do not create and do not copy
   apt update $silent
-  apt -y --fix-broken install $silent 
+  apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated "
   apt install -y i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
@@ -672,6 +672,7 @@ check_arg () {
     }
 
 exit_screen () {
+    apt -y autoremove 
     #echo -e "$asciiart"
     #echo -e "\n\n    All Done! Happy Hacking! \n"
     exit
