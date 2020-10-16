@@ -622,7 +622,7 @@ pimpmyi3_menu () {
   echo -e "        + lightdm autologin-user=$finduser lightdm autologin-session=i3"
   echo -e "        + all default base configs included in pimpmy-i3"
   echo -e "        + pimpmykali --all and --bpt (bpt the_essentials)"
-  echo -e "        #2 DO NOT USE FOR ROOT! if this says root your already root!!\n"
+  echo -e "        #2 DO NOT USE FOR ROOT! if this says root your already root use #1!!\n"
   # menu option 3 is hearby dedicated to : BlindPenTester and shall remain for all time
   echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
   echo -e "        - Whatever you get you get Dewalt is NOT sorting it out!"
@@ -632,7 +632,7 @@ pimpmyi3_menu () {
   echo -e "        only runs pimpmy-i3.sh for user $runner with no additional upgrades\n"
   echo -e "    5 - pimpmy-i3 for user $finduser without pimpmyakli.sh --all or --bpt"
   echo -e "        only runs pimpmy-i3.sh for user $finduser with no additional upgrades"
-  echo -e "        #5 DO NOT USE FOR ROOT! if this says root your already root!!\n"
+  echo -e "        #5 DO NOT USE FOR ROOT! if this says root your already root use #4!!\n"
   echo -e "    -- Upgrade Only Options -- \n"
   echo -e "    P - Only pimpmykali --all"
   echo -e "    B - Only BlindPenTester the_essentials (pimpmykali --bpt)"
