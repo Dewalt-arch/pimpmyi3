@@ -14,7 +14,7 @@
 # /etc/i3status.conf and /usr/bin/i3-alt-tab.py
 # i3-gaps terminator rofi numlockx flameshot compton feh
 #
-# See README.md for full details 
+# See README.md for full details
 # Standard Disclaimer : Author assumes no liability for any damages
 
 # Some desktop backgrounds found online... Mileage may vary
@@ -650,7 +650,7 @@ pimpmyi3_menu () {
   #
   echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
   echo -e "        Whatever you get you get Dewalt is NOT sorting it out!"
-  echo -e "        - BPT Will provide 100% free technical support in person! "
+  echo -e "        - BlindPentester Will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
   #
   echo -e "    -- Upgrade Only Options -- \n"
