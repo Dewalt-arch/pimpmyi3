@@ -632,7 +632,7 @@ pimpmyi3_menu () {
   echo -e "        only runs pimpmy-i3.sh for user $runner with no additional upgrades\n"
   echo -e "    5 - pimpmy-i3 for user $finduser without pimpmyakli.sh --all or --bpt"
   echo -e "        only runs pimpmy-i3.sh for user $finduser with no additional upgrades"
-  echo -e "        (if #5 says root.. you are already root - do not run for root user!)\n"
+  echo -e "        DO NOT USE FOR ROOT! if this says root your already root!!\n"
   echo -e "    -- Upgrade Only Options -- \n"
   echo -e "    P - Only pimpmykali --all"
   echo -e "    B - Only BlindPenTester the_essentials (pimpmykali --bpt)"
