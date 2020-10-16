@@ -19,6 +19,13 @@ pimpmyi3.sh (initial README.md) - script is not yet live on github
   although should work on already existing installs, warning your mileage
   may vary on pre-installed systems.
 
+- Installation script 
+  #!/bin/bash
+  rm -rf pimpmyi3/
+  git clone https://github.com/Dewalt-arch/pimpmyi3
+  cd pimpmyi3
+  sudo ./pimpmy-i3.sh   
+
 What pimpmy-i3.sh is going to do:
 
 - PC Speaker Beep turned off ( i3_shutup_pcbeep function )
