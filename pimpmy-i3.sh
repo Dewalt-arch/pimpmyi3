@@ -672,7 +672,6 @@ check_arg () {
     }
 
 exit_screen () {
-    apt -y autoremove 
     #echo -e "$asciiart"
     #echo -e "\n\n    All Done! Happy Hacking! \n"
     exit
