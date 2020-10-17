@@ -1,6 +1,6 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
-# Initial Release: Revision "Alpha"
+# Initial Release: Revision "BETA"
 
   This script is for a 1 shot 1 and done run to setup i3 window manager
   (i3-gaps actually) And all related base components to a fully functional
@@ -42,6 +42,8 @@
     - uncomment ONE url=  statments at the top of the script
     - or change it to to the url of an image of your choice!
     - ~/Pictures/background.jpg
+
+- Added resize via ctrl + up down left right to ~/.config/i3/config
 
 - Pre-configured ~/.config/i3/config
   - set $modkey Mod1    (alt key)
