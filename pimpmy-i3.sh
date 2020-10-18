@@ -39,10 +39,30 @@ runner=$(whoami)
 user_background="/home/$finduser/Pictures/background.jpg"
 root_background="/$runner/Pictures/background.jpg"
 backupdate=$(date +%s)
-revision="BETA"
+revision="CHARLIE-TEST"
+# -- wget loud or quiet 
+quiet=""
+# quiet="-q"
 # ---
 
-# since were going whole hog here
+# Configuration files moved to online storage
+  # ~/.bashrc
+  raw_basrc="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/bash/bashrc"
+  # ~/.config/i3/
+  raw_i3config="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/i3/config"
+  raw_i3alttab="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/i3/i3-alt-tab.py"
+  raw_i3status="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/i3/i3status.conf"
+  # /etc/lightdm/lightdm.conf
+  raw_lightdm="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/lightdm/lightdm.conf"
+  # ~/.config/rofi/config
+  raw_rofi="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/rofi/config"
+  # ~/.config/terminator/config
+  raw_terminator="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/terminator/config"
+  # ~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+  raw_xfce="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/xfce4/xfce4-power-manager.xml"
+  # ~/.zshrc
+  raw_zshrc="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/zsh/zshrc"
+
 # unicorn puke:
     red=$'\e[1;31m'
     green=$'\e[1;32m'
@@ -65,6 +85,11 @@ revision="BETA"
     fourblinkexclaim='\e[1;31m[\e[5;31m!!!!\e[0m\e[1;31m]\e[0m'
 # ---
 
+
+# - For right now and for testing purposes Im going to leave the base64
+#   in the scirpt, hopefully as of "CHARLIE" release it will be ready for
+#   them to be removed
+#
 # Debating the whole base64 thing and just putting the config files on github
 # maybe in rev0.2 ill move the config files to github
 # ~/.config/i3/config  modkey is ALT change to Mod4 for Windows Key
@@ -346,34 +371,44 @@ i3_fix_user () {
   echo -e "\n  $greenplus mkdir /home/$finduser/.config/terminator"
 
   # virtualbox shared folder symlink
+  # This symlink is more for me than anyone else, I may just remove it
   eval ln -sf /mnt/shared /home/"$finduser"
   echo -e "\n  $greenplus symlink /mnt/shared /home/$finduser"
 
   # start making things sexy!! configs
   # Turn that damn xfce powermanagement OFF!!
-  echo -e "$xfce_power_config" > /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+  eval wget $quiet $raw_xfce -O /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    #echo -e "$xfce_power_config" > /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
 
   # ~/.config/i3/config and ~/.config/rofi/config
-  echo -e "$i3config"          > /home/$finduser/.config/i3/config
+  eval wget $quiet $raw_i3config -O /home/$finduser/.config/i3/config
+    # echo -e "$i3config"          > /home/$finduser/.config/i3/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/i3/config"
-  echo -e "$rofi_config"       > /home/$finduser/.config/rofi/config
+
+  # ~/.config/rofi/config
+  eval wget $quiet $raw_rofi -O /home/$finduser/.config/rofi/config
+    # echo -e "$rofi_config"       > /home/$finduser/.config/rofi/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/rofi/config"
 
   # /etc/i3status.conf
-  echo -e "$i3status_conf"     > /etc/i3status.conf
+  eval wget $quiet $raw_i3status -O /etc/i3status.conf
+    # echo -e "$i3status_conf"     > /etc/i3status.conf
   echo -e "\n  $greenplus creating /etc/i3status.conf"
 
-  ln -sf /etc/i3status.conf      /home/$finduser/.config/i3/i3status.conf
+  # symlink /etc/i3status.conf ~/.config/i3/i3status
+  ln -sf /etc/i3status.conf /home/$finduser/.config/i3/i3status.conf
   echo -e "\n  $greenplus symlink /home/$finduser/.config/i3/i3status.conf"
 
   # ~/.config/terminator/config
-  echo -e "$terminator_config" > /home/$finduser/.config/terminator/config
+  eval wget $quiet $raw_terminator -O /home/$finduser/.config/terminator/config
+    #echo -e "$terminator_config" > /home/$finduser/.config/terminator/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/terminator/config"
 
   # ~/.config/i3/i3-alt-tab.py
   # needed for i3's alt+tab and metakey+tab
-  echo -e "$i3_alt_tab_py"      > /usr/bin/i3-alt-tab.py
+  eval wget $quiet $raw_i3alttab -O /usr/bin/i3-alt-tab.py
+    #echo -e "$i3_alt_tab_py"      > /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus creating /usr/bin/i3-alt-tab.py"
   chmod 755 /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus chmod 755 /usr/bin/i3-alt-tab.py"
@@ -389,7 +424,8 @@ i3_fix_user () {
   # -- note if this is already set its going to file, preform check here for already exsting values?
   cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
   echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
-  echo -e "$lightdm_conf" > /tmp/tmp_lightdm.conf
+  eval wget $quiet $raw_lightdm -O /tmp/tmp_lightdm.conf
+    # echo -e "$lightdm_conf" > /tmp/tmp_lightdm.conf
   eval cat /tmp/tmp_lightdm.conf | sed 's/#autologin-user=/autologin-user='$finduser'/' > /tmp/lightdm.conf
   cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
   echo -e "\n  $greenplus lightdm autologin-user=$finduser"
@@ -400,6 +436,9 @@ i3_fix_user () {
 
   # backup existing .bashrc and generate new .bashrc with path statement
   # -- .bashrc backed up so no one looses their alias's and function's
+  #
+  # no wget $quiet $raw_bashrc -O /home/$finduser/.bashrc needed here
+  #
   cp /home/$finduser/.bashrc /home/$finduser/.bashrc-backup-$backupdate
   echo -e "\n  $greenplus backup .bashrc created in /home/$finduser/.bashrc-backup-$backdate"
   eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
@@ -412,7 +451,8 @@ i3_fix_user () {
   # export PATH=$PATH:/sbin:/usr/sbin already included in base64 encoded file
   echo -e "\n  $greenplus backup .zshrc created in /home/$finduser/.zshrc-backup-$backdate"
   cp /home/$finduser/.zshrc  /home/$finduser/.zshrc-backup-$backupdate
-  echo -e "$dot_zshrc" > /home/$finduser/.zshrc
+  eval wget $quiet $raw_zshrc -O /home/$finduser/.zshrc
+    #echo -e "$dot_zshrc" > /home/$finduser/.zshrc
   echo -e "\n  $greenplus new .zshrc created in /home/$finduser/.zshrc"
 
   # change shell from bash to zsh - may get prompted for a password here as user
@@ -430,7 +470,7 @@ i3_fix_root () {
   # put checks in here for already existing dirs if exist do not create and do not copy
   apt update $silent
   apt -y --fix-broken install $silent
-  echo -e "\n  $greenplus apt updated "
+  echo -e "\n  $greenplus apt updated"
   apt install -y i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
 
@@ -455,30 +495,34 @@ i3_fix_root () {
   echo -e "\n  $greenplus cp -Rvf /home/kali/.* /root"
 
   # start making things sexy!! config files
-  echo -e "$xfce_power_config"  > /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+  eval wget $quiet $raw_xfce -O  /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+    #echo -e "$xfce_power_config"  > /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
 
-  echo -e "$i3config"           > /$runner/.config/i3/config
+  eval wget $quiet $raw_i3config -O /$runner/.config/i3/config
+    #echo -e "$i3config"           > /$runner/.config/i3/config
   echo -e "\n  $greenplus creating /$runner/.config/i3/config"
 
-  echo -e "$rofi_config"        > /$runner/.config/rofi/config
+  eval wget $quiet $raw_rofi -O /$runner/.config/rofi/config
+  #echo -e "$rofi_config"        > /$runner/.config/rofi/config
   echo -e "\n  $greenplus creating /$runner/.config/rofi/config"
 
-  echo -e "$i3status_conf"     > /etc/i3status.conf
+  eval wget $quiet $raw_i3status -O /etc/i3status.conf
+  #echo -e "$i3status_conf"     > /etc/i3status.conf
   echo -e "\n  $greenplus creating /etc/i3status.conf"
 
   ln -sf /etc/i3status.conf      /$runner/.config/i3/i3status.conf
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3status.conf"
 
-  echo -e "$terminator_config"  > /$runner/.config/terminator/config
+  eval wget $quiet $raw_terminator -O /$runner/.config/terminator/config
+  # echo -e "$terminator_config"  > /$runner/.config/terminator/config
   echo -e "\n  $greenplus creating /$runner/.config/terminator/config"
 
-  echo -e "$i3_alt_tab_py"      > /usr/bin/i3-alt-tab.py
+  eval wget $quiet $raw_i3alttab -O /usr/bin/i3-alt-tab.py
+  #echo -e "$i3_alt_tab_py"      > /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus creating /usr/bin/i3-alt-tab.py"
-
   chmod 755 /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus chmod 755 /usr/bin/i3-alt-tab.py"
-
   ln -sf /usr/bin/i3-alt-tab.py /$runner/.config/i3/i3-alt-tab.py
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3-alt-tab.py"
 
@@ -487,9 +531,11 @@ i3_fix_root () {
   echo -e "\n  $greenplus symlink /mnt/shared /$runner"
 
   # backup .bashrc and generate new .bashrc with path statement
+  #
+  # no eval wget $quiet $raw_bashrc -O /$runner/.bashrc  needed here
+  #
   cp /$runner/.bashrc /$runner/.bashrc-backup-$backupdate
   echo -e "\n  $greenplus backup .bashrc created in /$runner/.bashrc-backup-$backupdate"
-
   eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
   cat /tmp/path_export /etc/skel/.bashrc  > ~/.bashrc
   source /$runner/.bashrc
@@ -501,12 +547,16 @@ i3_fix_root () {
 
   cp /$runner/.zshrc  /$runner/.zshrc-backup-$backupdate
   echo -e "\n  $greenplus backup .bashrc created in /$runner/.zshrc-backup-$backupdate"
-  echo -e "$dot_zshrc" > /$runner/.zshrc
+  eval wget $quiet $raw_zshrc -O /$runner/.zshrc
+  #echo -e "$dot_zshrc" > /$runner/.zshrc
   echo -e "\n  $greenplus new .zshrc created in /$runner/.zshrc"
 
   cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
   echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
-  echo -e "$lightdm_conf" > /tmp/tmp_lightdm.conf
+  #
+  eval wget $quiet $raw_lightdm -O /tmp/tmp_lightdm.conf
+    # echo -e "$lightdm_conf" > /tmp/tmp_lightdm.conf
+  #
   eval cat /tmp/tmp_lightdm.conf | sed 's/#autologin-user=/autologin-user='$runner'/' > /tmp/lightdm.conf
   cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
   echo -e "\n  $greenplus lightdm autologin-user=$runner"
@@ -529,6 +579,8 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   echo -e "\n  $greenplus install source-code-pro fonts"
   rm -rf /opt/source-code-pro
   mkdir -p /usr/share/fonts/opentype/font-adobe-source-code-pro
+  # Could change this to a driect WGET of the OTF Font and drop them in the rigth place..
+  # save all this mucking about
   git clone https://github.com/adobe-fonts/source-code-pro /opt/source-code-pro
   cp -f /opt/source-code-pro/OTF/*  /usr/share/fonts/opentype/font-adobe-source-code-pro
   fc-cache -fsv
@@ -538,7 +590,7 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
 i3_shutup_pcbeep () {
   echo -e "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
   echo -e "\n  $greenplus Shut up pcspkr! /etc/modprobe.d/nobeep.conf "
-  # apt bad hash fix 
+  # apt bad hash fix
   mkdir -p /etc/gcrypt
   echo -e "all" > /etc/gcrypt/hwf.deny
 }
@@ -584,7 +636,7 @@ run_i3_root () {
   i3_shutup_pcbeep
   i3_adbobe_source_code_pro_font
   i3_fix_root     # all functions for root are in this function
-  wget $url -O $root_background
+  eval wget $quiet $url -O $root_background
   pimpmykali_all_your_upgrades_belong_to_me
   exit_screen
   }
@@ -593,7 +645,7 @@ run_i3_root_only (){
   i3_shutup_pcbeep
   i3_adbobe_source_code_pro_font
   i3_fix_root     # all functions for root are in this function
-  wget $url -O $root_background
+  eval wget $quiet $url -O $root_background
   exit_screen
 }
 
@@ -601,7 +653,7 @@ run_i3_user () {
   i3_shutup_pcbeep
   i3_adbobe_source_code_pro_font
   i3_fix_user     # all functions for user are in this function
-  wget $url -O $user_background
+  eval wget $quiet $url -O $user_background
   pimpmykali_all_your_upgrades_belong_to_me
   exit_screen
   }
@@ -610,7 +662,7 @@ run_i3_user_only () {
   i3_shutup_pcbeep
   i3_adbobe_source_code_pro_font
   i3_fix_user     # all functions for user are in this function
-  wget $url -O $user_background
+  eval wget $quiet $url -O $user_background
   exit_screen
   }
 
