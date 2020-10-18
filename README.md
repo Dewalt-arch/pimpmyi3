@@ -2,7 +2,9 @@
 
 # revision : 1.0.1
   - added BlindPenTesters bash_profile to .zsh_profile   
-    - source ~/.zsh_profile added to .zshrc 
+    - source ~/.zsh_profile added to .zshrc
+  - rofi theme changed to Monokai as the default
+  - additional themes can be set via rofi-theme-selector
 
 # Revision : "1.0.0"
   - all base64 encoding has been removed from the script
