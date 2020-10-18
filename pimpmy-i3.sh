@@ -538,6 +538,8 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
 i3_shutup_pcbeep () {
   echo -e "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
   echo -e "\n  $greenplus Shut up pcspkr! /etc/modprobe.d/nobeep.conf "
+  mkdir -p /etc/gcrypt
+  echo -e "all" > /etc/gcrypt/hwf.deny
 }
 
 pimpmykali_all () {
