@@ -1,5 +1,12 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
+# Revision : "1.0"
+  - all base64 encoding has been removed from the script
+  - configuration files are now online and will be pulled via pimpmy-i3.sh as needed
+  - config files will be at https://github.com/Dewalt-arch/pimpmyi3-config
+  - There Is NO NEED to clone the config repo, the script will get what it needs from it
+  - additional tweaks and tunes to the script will happen as needed
+
 # Initial Release: Revision "BETA"
 
   This script is for a 1 shot 1 and done run to setup i3 window manager

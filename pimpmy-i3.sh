@@ -2,7 +2,7 @@
 #
 # pimpmy-i3.sh
 # Author : Dewalt
-#
+# git clone https://github.com/Dewalt-arch/pimpmyi3
 # I didnt write this for you I wrote this for me,
 # If you dont like it! DONT COMPLAIN ABOUT IT!
 #
@@ -39,8 +39,9 @@ runner=$(whoami)
 user_background="/home/$finduser/Pictures/background.jpg"
 root_background="/$runner/Pictures/background.jpg"
 backupdate=$(date +%s)
-revision="CHARLIE-TEST"
-# -- wget loud or quiet 
+revision="1.0"
+
+# -- wget loud or quiet
 quiet=""
 # quiet="-q"
 # ---
@@ -84,6 +85,21 @@ quiet=""
     blinkexclaim='\e[1;31m[\e[5;31m!!\e[0m\e[1;31m]\e[0m'
     fourblinkexclaim='\e[1;31m[\e[5;31m!!!!\e[0m\e[1;31m]\e[0m'
 # ---
+
+# pimpmy-i3 asciiart
+asciiart=$(base64 -d <<< "H4sIAAAAAAAAA41QMQoDMQzb8wqNnc4fOG4o94CuhYApNFuhUA
+6OQh5f2Ymb61YngyVLCk7CqEkV/xWVUUAypoOqWlsfDAaka/pGUJm7IrcIh8iVM8EgOG5wNpffeM
+yAnkwztwhjdMHi3ZWH5mAa9MQK8QTBeIyziGC+2CJ2CeXAODRrPS4isaukzoyxBbsXl+deXuVOmA
+Xn98+HrmW/PTaTIn0AuTB/NpMBAAA=" | gunzip)
+
+option3=$(base64 -d <<< "H4sIAAAAAAAAA5VSTWvDMAy951eoN+mwmPUPjMFg7LLBbgODSLf
+ShoW4rCmjoB8/+St1mlCY4yR2/J6enhSApcFXo1pEGEDwE4DibRegBhPKYziAKRHsFRYxvvxZDkv
+5g85qCjb+hNNhADHp0qvRDJ+yQKZRKDFrRNZ3rZsyecw5R4ejheS1jkqlSCoG5sgY/GLIqs4c//n
+CwQk62aAgozum7LzQSRSb9NWR34awOTcKMbDklJkpIxJ4rDGOtb7WufQuSlES4CjFOPWT7YwFhlH
+FUzho+0Bl3Vg7oCf+gUFSooheTMT+1ieXFMVS3lgr0nWddCLGmEsHrRLnP27IyqAZPZOdtrHEQc5
+HYjo3oAYFfFBKmdMcmH9v1MEo3hzlZs+Cpr9OxKIoVozIIhLzQlF+kkhC3rAFxojReinaWrDLgY3
+68fVUqPFBFQkBbCH04u6/Qzkf7gQ/26brzjDs3Wm3H+AFfpsj7Fzb72Bw0G0HOCuq7Y+D4pTjDkP
+reriHx9cnWMPGDfvVwwoqPXp2sGk+v6Hpv+DQ6mLEvr3n9bqua6j+AFXx/5noBAAA" | gunzip )
 
 # ~/.config/i3/config  modkey is ALT change to Mod4 for Windows Key
 # set $modkey Mod1    is for the ALT key
