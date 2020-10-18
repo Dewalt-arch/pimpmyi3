@@ -64,6 +64,8 @@ quiet=""
   raw_xfce="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/xfce4/xfce4-power-manager.xml"
   # ~/.zshrc
   raw_zshrc="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/zsh/zshrc"
+  # bpt bash_profile
+  raw_bpt_bash_profile="https://raw.githubusercontent.com/blindpentester/bash_profile/main/bash_profile"
 
 # unicorn puke:
     red=$'\e[1;31m'
@@ -148,6 +150,9 @@ i3_fix_user () {
   eval wget $quiet $raw_xfce -O /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
     #echo -e "$xfce_power_config" > /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
+
+  # BPT bash_profile saved to .zsh_profile
+  eval wget $quiet $raw_bpt_bash_profile -O /home/$finduser/.zsh_profile
 
   # ~/.config/i3/config and ~/.config/rofi/config
   eval wget $quiet $raw_i3config -O /home/$finduser/.config/i3/config
@@ -261,6 +266,9 @@ i3_fix_root () {
   echo -e "\n  $greenplus cp -Rvf /home/kali/*  /root"
   cp -Rvf /home/kali/.* /root
   echo -e "\n  $greenplus cp -Rvf /home/kali/.* /root"
+
+  # BPT bash_profile saved to .zsh_profile 
+  eval wget $quiet $raw_bpt_bash_profile -O /$runner/.zsh_profile
 
   # start making things sexy!! config files
   eval wget $quiet $raw_xfce -O  /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
