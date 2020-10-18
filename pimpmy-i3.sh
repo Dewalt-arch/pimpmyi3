@@ -344,12 +344,27 @@ i3_fix_root () {
 
 i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   echo -e "\n  $greenplus install source-code-pro fonts"
-  rm -rf /opt/source-code-pro
+  # rm -rf /opt/source-code-pro
   mkdir -p /usr/share/fonts/opentype/font-adobe-source-code-pro
-  # Could change this to a driect WGET of the OTF Font and drop them in the rigth place..
+  # Could change this to a driect WGET of the OTF Font and drop them in the right place..
   # save all this mucking about
-  git clone https://github.com/adobe-fonts/source-code-pro /opt/source-code-pro
-  cp -f /opt/source-code-pro/OTF/*  /usr/share/fonts/opentype/font-adobe-source-code-pro
+  # git clone https://github.com/adobe-fonts/source-code-pro /opt/source-code-pro
+  # cp -f /opt/source-code-pro/OTF/*  /usr/share/fonts/opentype/font-adobe-source-code-pro
+  fonts_go_here="/usr/share/fonts/opentype/font-adobe-source-code-pro"
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BlackIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Black.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BoldIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Bold.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLightIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLight.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-It.otf  -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-LightIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Light.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-MediumIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Medium.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Regular.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-SemiboldIt.otf -O $fonts_go_here
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Semibold.ot -O $fonts_go_here
   fc-cache -fsv
   echo -e "\n  $greenplus fonts cache updated"
   }
