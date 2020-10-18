@@ -1,6 +1,6 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
-# Revision : "1.0"
+# Revision : "1.0.0"
   - all base64 encoding has been removed from the script
   - configuration files are now online and will be pulled via pimpmy-i3.sh as needed
   - config files will be at https://github.com/Dewalt-arch/pimpmyi3-config
