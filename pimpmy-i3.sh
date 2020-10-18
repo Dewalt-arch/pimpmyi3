@@ -40,7 +40,7 @@ runner=$(whoami)
 user_background="/home/$finduser/Pictures/background.jpg"
 root_background="/$runner/Pictures/background.jpg"
 backupdate=$(date +%s)
-revision="1.0.0"
+revision="1.0.1"
 
 # -- wget loud or quiet
 quiet=""
@@ -267,7 +267,7 @@ i3_fix_root () {
   cp -Rvf /home/kali/.* /root
   echo -e "\n  $greenplus cp -Rvf /home/kali/.* /root"
 
-  # BPT bash_profile saved to .zsh_profile 
+  # BPT bash_profile saved to .zsh_profile
   eval wget $quiet $raw_bpt_bash_profile -O /$runner/.zsh_profile
 
   # start making things sexy!! config files

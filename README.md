@@ -1,5 +1,9 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
+# revision : 1.0.1
+  - added BlindPenTesters bash_profile to .zshrc  
+    - source ~/.zsh_profile 
+
 # Revision : "1.0.0"
   - all base64 encoding has been removed from the script
   - configuration files are now online and will be pulled via pimpmy-i3.sh as needed
