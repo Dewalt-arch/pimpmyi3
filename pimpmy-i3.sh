@@ -40,7 +40,7 @@ runner=$(whoami)
 user_background="/home/$finduser/Pictures/background.jpg"
 root_background="/$runner/Pictures/background.jpg"
 backupdate=$(date +%s)
-revision="1.0"
+revision="1.0.0"
 
 # -- wget loud or quiet
 quiet=""
