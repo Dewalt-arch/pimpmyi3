@@ -140,8 +140,8 @@ i3_fix_user () {
 
   # virtualbox shared folder symlink
   # This symlink is more for me than anyone else, I may just remove it
-  eval ln -sf /mnt/shared /home/"$finduser"
-  echo -e "\n  $greenplus symlink /mnt/shared /home/$finduser"
+  # eval ln -sf /mnt/shared /home/"$finduser"
+  # echo -e "\n  $greenplus symlink /mnt/shared /home/$finduser"
 
   # start making things sexy!! configs
   # Turn that damn xfce powermanagement OFF!!
@@ -295,8 +295,8 @@ i3_fix_root () {
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3-alt-tab.py"
 
   #virtualbox shared folder shortcut in home dir
-  eval ln -sf /mnt/shared /"$runner"
-  echo -e "\n  $greenplus symlink /mnt/shared /$runner"
+  # eval ln -sf /mnt/shared /"$runner"
+  # echo -e "\n  $greenplus symlink /mnt/shared /$runner"
 
   # backup .bashrc and generate new .bashrc with path statement
   #
