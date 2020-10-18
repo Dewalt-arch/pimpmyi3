@@ -5,7 +5,9 @@
     - source ~/.zsh_profile added to .zshrc
   - rofi theme changed to Monokai as the default
   - additional themes can be set via rofi-theme-selector
-  - alt+printsceen will now screenshot via flameshot 
+  - alt+printsceen will now screenshot via flameshot gui  
+    - printscreen key is also configured in the i3/config
+      - uncomment to use printscreen key
 
 # Revision : "1.0.0"
   - all base64 encoding has been removed from the script
