@@ -19,6 +19,7 @@
 
 # Some desktop backgrounds found online... Mileage may vary
 # ONLY UNCOMMENT ONE URL= statement
+
 # -------Desktop Backgrounds
 # kali matrix blue
   # url="https://www.hdwallpaper.nu/wp-content/uploads/2017/04/linux-19.jpg"
