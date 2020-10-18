@@ -6,7 +6,6 @@
   - config files will be at https://github.com/Dewalt-arch/pimpmyi3-config
   - There Is NO NEED to clone the config repo, the script will get what it needs from it
   - additional tweaks and tunes to the script will happen as needed
-  - source-code-pro font moved from git clone to wget operation
 
 # Initial Release: Revision "BETA"
 
