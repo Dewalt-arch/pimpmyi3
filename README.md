@@ -2,7 +2,7 @@
 
 # revision : 1.0.1
   - added BlindPenTesters bash_profile to .zsh_profile   
-    - source ~/.zsh_profile
+    - source ~/.zsh_profile added to .zshrc 
 
 # Revision : "1.0.0"
   - all base64 encoding has been removed from the script
