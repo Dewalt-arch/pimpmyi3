@@ -350,21 +350,22 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   # save all this mucking about
   # git clone https://github.com/adobe-fonts/source-code-pro /opt/source-code-pro
   # cp -f /opt/source-code-pro/OTF/*  /usr/share/fonts/opentype/font-adobe-source-code-pro
-  fonts_go_here="/usr/share/fonts/opentype/font-adobe-source-code-pro"
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BlackIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Black.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BoldIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Bold.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLightIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLight.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-It.otf  -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-LightIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Light.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-MediumIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Medium.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Regular.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-SemiboldIt.otf -O $fonts_go_here
-  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Semibold.ot -O $fonts_go_here
+  
+  cd /usr/share/fonts/opentype/font-adobe-source-code-pro
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BlackIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Black.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-BoldIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Bold.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLightIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-ExtraLight.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-It.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-LightIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Light.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-MediumIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Medium.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Regular.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-SemiboldIt.otf
+  eval wget $quiet https://github.com/adobe-fonts/source-code-pro/blob/release/OTF/SourceCodePro-Semibold.otf
   fc-cache -fsv
   echo -e "\n  $greenplus fonts cache updated"
   }
