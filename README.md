@@ -2,7 +2,8 @@
 
 # revision : 1.0.2
   - correction was made to the i3 config file ctrl keys was not
-    working to resize windows.... Thank you BlindPenTester for the bug report!
+    working to resize windows....
+  - Thank you BlindPenTester for the bug report!
 
 # revision : 1.0.1
   - added BlindPenTesters bash_profile to .zsh_profile   
