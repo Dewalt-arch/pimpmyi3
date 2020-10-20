@@ -1,5 +1,9 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
+# revision : 1.0.2
+  - correction was made to the i3 config file ctrl keys were not
+    working to resize windows.... Thank you BlindPenTester!
+
 # revision : 1.0.1
   - added BlindPenTesters bash_profile to .zsh_profile   
     - source ~/.zsh_profile added to .zshrc
