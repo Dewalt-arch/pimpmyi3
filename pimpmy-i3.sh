@@ -262,25 +262,29 @@ i3_fix_root () {
   # BPT bash_profile saved to .zsh_profile
   eval wget $quiet $raw_bpt_bash_profile -O /$runner/.zsh_profile
 
-  # start making things sexy!! config files
+  # disable xfce4 powermanagement
   eval wget $quiet $raw_xfce -O  /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
 
+  # i3 config
   eval wget $quiet $raw_i3config -O /$runner/.config/i3/config
   echo -e "\n  $greenplus creating /$runner/.config/i3/config"
 
+  # rofi config
   eval wget $quiet $raw_rofi -O /$runner/.config/rofi/config
   echo -e "\n  $greenplus creating /$runner/.config/rofi/config"
 
+  # i3status.conf
   eval wget $quiet $raw_i3status -O /etc/i3status.conf
   echo -e "\n  $greenplus creating /etc/i3status.conf"
-
   ln -sf /etc/i3status.conf      /$runner/.config/i3/i3status.conf
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3status.conf"
 
+  # terminator config
   eval wget $quiet $raw_terminator -O /$runner/.config/terminator/config
   echo -e "\n  $greenplus creating /$runner/.config/terminator/config"
 
+  # handle i3-alt-tab.py
   eval wget $quiet $raw_i3alttab -O /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus creating /usr/bin/i3-alt-tab.py"
   chmod 755 /usr/bin/i3-alt-tab.py
@@ -288,12 +292,7 @@ i3_fix_root () {
   ln -sf /usr/bin/i3-alt-tab.py /$runner/.config/i3/i3-alt-tab.py
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3-alt-tab.py"
 
-  #virtualbox shared folder shortcut in home dir
-  # eval ln -sf /mnt/shared /"$runner"
-  # echo -e "\n  $greenplus symlink /mnt/shared /$runner"
-
   # backup .bashrc and generate new .bashrc with path statement
-  #
   # no eval wget $quiet $raw_bashrc -O /$runner/.bashrc  needed here
   #
   cp /$runner/.bashrc /$runner/.bashrc-backup-$backupdate
@@ -303,18 +302,19 @@ i3_fix_root () {
   source /$runner/.bashrc
   echo -e "\n  $greenplus new .bashrc created in /$runner/.bashrc"
 
-  # backup .zshrc and generate new custom .zshrc from base64 encoded
+  # backup .zshrc and generate new custom .zshrc
   # dosent have that stupid skull on root or that circle-k on kali user
   # export PATH=$PATH:/sbin:/usr/sbin already included in base64 encoded file
-
   cp /$runner/.zshrc  /$runner/.zshrc-backup-$backupdate
   echo -e "\n  $greenplus backup .bashrc created in /$runner/.zshrc-backup-$backupdate"
   eval wget $quiet $raw_zshrc -O /$runner/.zshrc
   echo -e "\n  $greenplus new .zshrc created in /$runner/.zshrc"
 
+  # backup /etc/lightdm/lightdm.conf
   cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
   echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
 
+  # modify /etc/lightdm.conf for autologin-user=root and autologin-session=i3
   eval wget $quiet $raw_lightdm -O /tmp/tmp_lightdm.conf
   eval cat /tmp/tmp_lightdm.conf | sed 's/#autologin-user=/autologin-user='$runner'/' > /tmp/lightdm.conf
   cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
@@ -346,7 +346,7 @@ i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   echo -e "\n  $greenplus fonts cache updated"
   }
 
-i3_shutup_pcbeep () {
+i3_shutup_pcbeep () {                 # Might use this function in pimpmykali.sh
   echo -e "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
   echo -e "\n  $greenplus Shut up pcspkr! /etc/modprobe.d/nobeep.conf "
   # apt bad hash fix
