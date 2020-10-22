@@ -2,7 +2,7 @@
 
 # revision 1.0.3
   - modkey+ctrl+NUMBER quicklaunch applications added to i3 config
-    only the first 6 keys have been programmed with commonly used program
+    only 6 keys have been programmed with commonly used program
     feel free to Change and customize and move them around for you!
     uncomment to activate modkey+ctrl for that key
 
