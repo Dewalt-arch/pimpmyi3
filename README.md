@@ -6,16 +6,16 @@
     feel free to Change and customize and move them around for you!
     uncomment to activate modkey+ctrl for that key
 
-    bindsym $modkey+ctrl+1 exec --no-startup-id firefox
-    bindsym $modkey+ctrl+2 exec --no-startup-id burpsuite
-    bindsym $modkey+ctrl+3 exec --no-startup-id atom
-    bindsym $modkey+ctrl+4 exec --no-startup-id cherrytree
-    bindsym $modkey+ctrl+5 exec --no-startup-id thunar
-    bindsym $modkey+ctrl+6 exec --no-startup-id
-    bindsym $modkey+ctrl+7 exec --no-startup-id
-    bindsym $modkey+ctrl+8 exec --no-startup-id
-    bindsym $modkey+ctrl+9 exec --no-startup-id
-    bindsym $modkey+ctrl+0 exec --no-startup-id terminator -e 'msfconsole'
+    - bindsym $modkey+ctrl+1 exec --no-startup-id firefox
+    - bindsym $modkey+ctrl+2 exec --no-startup-id burpsuite
+    - bindsym $modkey+ctrl+3 exec --no-startup-id atom
+    - bindsym $modkey+ctrl+4 exec --no-startup-id cherrytree
+    - bindsym $modkey+ctrl+5 exec --no-startup-id thunar
+    - bindsym $modkey+ctrl+6 exec --no-startup-id
+    - bindsym $modkey+ctrl+7 exec --no-startup-id
+    - bindsym $modkey+ctrl+8 exec --no-startup-id
+    - bindsym $modkey+ctrl+9 exec --no-startup-id
+    - bindsym $modkey+ctrl+0 exec --no-startup-id terminator -e 'msfconsole'
 
 # revision : 1.0.2
   - correction was made to the i3 config file ctrl keys not working to resize
