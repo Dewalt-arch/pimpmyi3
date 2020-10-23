@@ -1,6 +1,15 @@
 #pimpmyi3.sh (initial README.md) - script is not yet live on github
 
 # revision 1.0.3
+  - adding function and menu option to update your config files
+    with the ones that are in the pimpmyi3-config github
+    - Menu 9 is for user config files
+    - Menu 0 is for root config files
+
+  - i3-keyboard.txt has been included in the git clone of pimpmyi3
+     - keyboard shortcut commands list (is not a 100% list of all i3 commands)  
+     - please use this as a reference for keyboard shortcuts 
+
   - modkey+ctrl+NUMBER quicklaunch applications added to i3 config
     only 6 keys have been programmed with commonly used program
     feel free to Change and customize and move them around for you!

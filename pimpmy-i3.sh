@@ -40,7 +40,7 @@ runner=$(whoami)
 user_background="/home/$finduser/Pictures/background.jpg"
 root_background="/$runner/Pictures/background.jpg"
 backupdate=$(date +%s)
-revision="1.0.1"
+revision="1.0.3"
 
 # -- wget loud or quiet
 quiet=""
@@ -123,13 +123,41 @@ check_distro() {
   }
 
 i3_fix_user () {
+  i3_user_apt_install
+  i3_get_user_mkdirs
+  i3_get_user_xfce_powermanage
+  i3_get_user_i3config
+  i3_get_user_roficonfig
+  i3_get_user_i3status
+  i3_get_user_terminator
+  i3_get_user_alttab
+  i3_user_backup_lightdm
+  i3_get_user_lightdm
+  i3_user_bashrc
+  i3_user_backup_zshrc
+  i3_get_user_zshrc
+  i3_get_user_bpt_zsh_profile
+  i3_user_change_to_zsh
+  i3_user_cleanup
+  i3_user_correct_ownership
+  }
+
+# i3_get_user functions -----------------------------------------
+i3_user_apt_install () {
   # /home/username/.config
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated "
   apt install -y i3-gaps compton feh flameshot numlockx rofi terminator $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator"
+  }
 
+i3_get_user_zshrc (){
+  eval wget $quiet $raw_zshrc -O /home/$finduser/.zshrc
+  echo -e "\n  $greenplus new .zshrc created in /home/$finduser/.zshrc"
+  }
+
+i3_get_user_mkdirs () {
   # make dirs - should already be there but if not make them
   mkdir -p /home/$finduser/.config
   echo -e "\n  $greenplus mkdir /home/$finduser/.config"
@@ -139,40 +167,51 @@ i3_fix_user () {
   echo -e "\n  $greenplus mkdir /home/$finduser/.config/rofi"
   mkdir -p /home/$finduser/.config/terminator
   echo -e "\n  $greenplus mkdir /home/$finduser/.config/terminator"
+  }
 
-  # virtualbox shared folder symlink
-  # This symlink is more for me than anyone else, I may just remove it
-  # eval ln -sf /mnt/shared /home/"$finduser"
-  # echo -e "\n  $greenplus symlink /mnt/shared /home/$finduser"
-
-  # start making things sexy!! configs
+i3_get_user_xfce_powermanage () {
   # Turn that damn xfce powermanagement OFF!!
   eval wget $quiet $raw_xfce -O /home/$finduser/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
+  }
 
+i3_get_user_bpt_zsh_profile () {
   # BPT bash_profile saved to .zsh_profile
   eval wget $quiet $raw_bpt_bash_profile -O /home/$finduser/.zsh_profile
+  }
 
-  # ~/.config/i3/config and ~/.config/rofi/config
+i3_get_user_i3config () {
+  # ~/.config/i3/config
   eval wget $quiet $raw_i3config -O /home/$finduser/.config/i3/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/i3/config"
+  }
 
+i3_get_user_roficonfig () {
   # ~/.config/rofi/config
   eval wget $quiet $raw_rofi -O /home/$finduser/.config/rofi/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/rofi/config"
+  }
 
+i3_get_user_i3status () {
   # /etc/i3status.conf
   eval wget $quiet $raw_i3status -O /etc/i3status.conf
   echo -e "\n  $greenplus creating /etc/i3status.conf"
-
-  # symlink /etc/i3status.conf ~/.config/i3/i3status
   ln -sf /etc/i3status.conf /home/$finduser/.config/i3/i3status.conf
   echo -e "\n  $greenplus symlink /home/$finduser/.config/i3/i3status.conf"
+  }
 
+i3_get_user_terminator () {
   # ~/.config/terminator/config
   eval wget $quiet $raw_terminator -O /home/$finduser/.config/terminator/config
   echo -e "\n  $greenplus creating /home/$finduser/.config/terminator/config"
+  }
 
+i3_user_correct_ownership () {
+  chown -R $finduser:$finduser /home/$finduser
+  echo -e "\n  $greenplus chown -R $finduser:$finduser /home/$finduser"
+  }
+
+i3_get_user_alttab () {
   # ~/.config/i3/i3-alt-tab.py
   # needed for i3's alt+tab and metakey+tab
   eval wget $quiet $raw_i3alttab -O /usr/bin/i3-alt-tab.py
@@ -181,14 +220,15 @@ i3_fix_user () {
   echo -e "\n  $greenplus chmod 755 /usr/bin/i3-alt-tab.py"
   ln -sf /usr/bin/i3-alt-tab.py /home/$finduser/.config/i3/i3-alt-tab.py
   echo -e "\n  $greenplus symlink /home/$finduser/.config/i3/i3-alt-tab.py"
-  chown -R $finduser:$finduser /home/$finduser
-  echo -e "\n  $greenplus chown -R $finduser:$finduser /home/$finduser"
+  }
 
-  # /etc/lightdm/lightdm.conf # enable lightdm autologin for user and set autologin session to i3
-  # its a pentesting distro not a daily driver, bypass login screen and get on with it
-  # sets autologin-user=$finduser (probably kali in most cases)
-  # sets autologin-session=i3
-  # -- note if this is already set its going to file, preform check here for already exsting values?
+
+i3_user_backup_lightdm () {
+  cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
+  echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
+  }
+
+i3_get_user_lightdm () {
   cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
   echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
   eval wget $quiet $raw_lightdm -O /tmp/tmp_lightdm.conf
@@ -199,50 +239,54 @@ i3_fix_user () {
   echo -e "\n  $greenplus lightdm autologin-session=i3"
   cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
   echo -e "\n  $greenplus new lightdm.conf created /etc/lightdm/lightdm.conf"
+  }
 
-  # backup existing .bashrc and generate new .bashrc with path statement
-  # -- .bashrc backed up so no one looses their alias's and function's
-  #
-  # no wget $quiet $raw_bashrc -O /home/$finduser/.bashrc needed here
-  #
+i3_user_bashrc () {
   cp /home/$finduser/.bashrc /home/$finduser/.bashrc-backup-$backupdate
   echo -e "\n  $greenplus backup .bashrc created in /home/$finduser/.bashrc-backup-$backdate"
   eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
   cat /tmp/path_export /etc/skel/.bashrc  > /home/$finduser/.bashrc
   source /home/$finduser/.bashrc
   echo -e "\n  $greenplus new .bashrc created in /home/$finduser/.bashrc"
+  }
 
-  # backup existing .zshrc and generate new custom .zshrc from base64 encoded
-  # dont have that stupid skull on root or circle-k on user
-  # export PATH=$PATH:/sbin:/usr/sbin already included in base64 encoded file
+i3_user_backup_zshrc () {
   echo -e "\n  $greenplus backup .zshrc created in /home/$finduser/.zshrc-backup-$backdate"
   cp /home/$finduser/.zshrc  /home/$finduser/.zshrc-backup-$backupdate
-  eval wget $quiet $raw_zshrc -O /home/$finduser/.zshrc
-  echo -e "\n  $greenplus new .zshrc created in /home/$finduser/.zshrc"
+  }
 
-  # change shell from bash to zsh - may get prompted for a password here as user
+i3_user_change_to_zsh () {
   echo -e "\n  $greenplus changing shell to zsh enter $finduser password:"
   sudo -u $finduser chsh --shell /bin/zsh
   echo -e "\n  $greenplus shell changed to zsh for $finduser"
+  }
 
+i3_user_cleanup () {
   # cleanup
   rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf
   echo -e "\n  $greenplus cleanup rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf"
   }
+# end i3_get_root functions -----------------------------------------
 
-i3_fix_root () {
-# /root/.config
+
+# begin i3_get_root functions ---------------------------------------
+i3_get_root_aptinstall () {
+  # /root/.config
   # put checks in here for already existing dirs if exist do not create and do not copy
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated"
   apt install -y i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
+  }
 
+i3_get_root_passwd () {
   # kali-root-login is also installed by pimpmykali.sh - not needed here - debate this
   echo -e "\n Kali-Root-Login was installed enter password for root : "
   passwd root
+}
 
+i3_get_root_mkdirs () {
   # make dirs
   mkdir -p /$runner/.config
   echo -e "\n  $greenplus mkdir /$runner/.config"
@@ -252,38 +296,53 @@ i3_fix_root () {
   echo -e "\n  $greenplus mkdir /$runner/.config/rofi"
   mkdir -p /$runner/.config/terminator
   echo -e "\n  $greenplus mkdir /$runner/.config/terminator"
+}
 
+i3_get_root_copy_home_kali () {
   # copy /home/kali/* and /home/kali/.* to /root/
   cp -Rvf /home/kali/*  /root
   echo -e "\n  $greenplus cp -Rvf /home/kali/*  /root"
   cp -Rvf /home/kali/.* /root
   echo -e "\n  $greenplus cp -Rvf /home/kali/.* /root"
+  }
 
-  # BPT bash_profile saved to .zsh_profile
+i3_get_root_bpt_zsh_profile () {
   eval wget $quiet $raw_bpt_bash_profile -O /$runner/.zsh_profile
+  echo -e "\n  $greenplus blindpentesters zsh_profile added"
+  }
 
-  # disable xfce4 powermanagement
+i3_get_root_xfce_powermanage (){
   eval wget $quiet $raw_xfce -O  /$runner/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
   echo -e "\n  $greenplus turned off xfce power management"
+  }
 
-  # i3 config
+i3_get_root_i3config (){
+  # i3 config for root user
   eval wget $quiet $raw_i3config -O /$runner/.config/i3/config
   echo -e "\n  $greenplus creating /$runner/.config/i3/config"
+  }
 
+i3_get_root_roficonfig () {
   # rofi config
   eval wget $quiet $raw_rofi -O /$runner/.config/rofi/config
   echo -e "\n  $greenplus creating /$runner/.config/rofi/config"
+  }
 
+i3_get_root_i3status () {
   # i3status.conf
   eval wget $quiet $raw_i3status -O /etc/i3status.conf
   echo -e "\n  $greenplus creating /etc/i3status.conf"
   ln -sf /etc/i3status.conf      /$runner/.config/i3/i3status.conf
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3status.conf"
+  }
 
+i3_get_root_terminator () {
   # terminator config
   eval wget $quiet $raw_terminator -O /$runner/.config/terminator/config
   echo -e "\n  $greenplus creating /$runner/.config/terminator/config"
+  }
 
+i3_get_root_alttab () {
   # handle i3-alt-tab.py
   eval wget $quiet $raw_i3alttab -O /usr/bin/i3-alt-tab.py
   echo -e "\n  $greenplus creating /usr/bin/i3-alt-tab.py"
@@ -291,29 +350,15 @@ i3_fix_root () {
   echo -e "\n  $greenplus chmod 755 /usr/bin/i3-alt-tab.py"
   ln -sf /usr/bin/i3-alt-tab.py /$runner/.config/i3/i3-alt-tab.py
   echo -e "\n  $greenplus symlink /$runner/.config/i3/i3-alt-tab.py"
+  }
 
-  # backup .bashrc and generate new .bashrc with path statement
-  # no eval wget $quiet $raw_bashrc -O /$runner/.bashrc  needed here
-  #
-  cp /$runner/.bashrc /$runner/.bashrc-backup-$backupdate
-  echo -e "\n  $greenplus backup .bashrc created in /$runner/.bashrc-backup-$backupdate"
-  eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
-  cat /tmp/path_export /etc/skel/.bashrc  > ~/.bashrc
-  source /$runner/.bashrc
-  echo -e "\n  $greenplus new .bashrc created in /$runner/.bashrc"
-
-  # backup .zshrc and generate new custom .zshrc
-  # dosent have that stupid skull on root or that circle-k on kali user
-  # export PATH=$PATH:/sbin:/usr/sbin already included in base64 encoded file
-  cp /$runner/.zshrc  /$runner/.zshrc-backup-$backupdate
-  echo -e "\n  $greenplus backup .bashrc created in /$runner/.zshrc-backup-$backupdate"
-  eval wget $quiet $raw_zshrc -O /$runner/.zshrc
-  echo -e "\n  $greenplus new .zshrc created in /$runner/.zshrc"
-
+i3_backup_lightdm () {
   # backup /etc/lightdm/lightdm.conf
   cp /etc/lightdm/lightdm.conf /etc/lightdm/.lightdm.conf_$backupdate
   echo -e "\n  $greenplus creating backup /etc/lightdm/.lightdm.conf_$backupdate"
+  }
 
+i3_get_root_lightdm () {
   # modify /etc/lightdm.conf for autologin-user=root and autologin-session=i3
   eval wget $quiet $raw_lightdm -O /tmp/tmp_lightdm.conf
   eval cat /tmp/tmp_lightdm.conf | sed 's/#autologin-user=/autologin-user='$runner'/' > /tmp/lightdm.conf
@@ -323,23 +368,105 @@ i3_fix_root () {
   echo -e "\n  $greenplus lightdm autologin-session=i3"
   cp -f /tmp/lightdm.conf /etc/lightdm/lightdm.conf
   echo -e "\n  $greenplus new lightdm.conf created /etc/lightdm/lightdm.conf"
+  }
 
-  # change shell to zsh for root
+i3_backup_root_zshrc () {
+  cp /$runner/.zshrc  /$runner/.zshrc-backup-$backupdate
+  echo -e "\n  $greenplus backup .bashrc created in /$runner/.zshrc-backup-$backupdate"
+  }
+
+i3_get_root_zshrc () {
+  eval wget $quiet $raw_zshrc -O /$runner/.zshrc
+  echo -e "\n  $greenplus new .zshrc created in /$runner/.zshrc"
+  }
+
+i3_get_root_bashrc () {
+  cp /$runner/.bashrc /$runner/.bashrc-backup-$backupdate
+  echo -e "\n  $greenplus backup .bashrc created in /$runner/.bashrc-backup-$backupdate"
+  eval echo -e "export PATH=$PATH:/sbin:/usr/sbin" > /tmp/path_export
+  cat /tmp/path_export /etc/skel/.bashrc  > ~/.bashrc
+  source /$runner/.bashrc
+  echo -e "\n  $greenplus new .bashrc created in /$runner/.bashrc"
+  }
+
+i3_root_change_shell_to_zsh () {
   echo -e "\n Changing default shell to /bin/zsh enter $runner password:"
   sudo -u $runner chsh --shell /bin/zsh
   echo -e "\n  $greenplus shell changed to zsh for $runner"
+  }
 
-  # cleanup (this could be made a function nothing specific here)
+i3_root_cleanup () {
   rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf
   echo -e "\n  $greenplus cleanup rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf"
+  }
+# end i3_get_root functions -----------------------------------------
+
+i3_udpate_user_config_all () {
+  #i3_user_apt_install
+  #i3_get_user_mkdirs
+  i3_get_user_xfce_powermanage
+  i3_get_user_i3config
+  i3_get_user_roficonfig
+  i3_get_user_i3status
+  i3_get_user_terminator
+  i3_get_user_alttab
+  i3_user_backup_lightdm
+  i3_get_user_lightdm
+  i3_user_bashrc
+  i3_user_backup_zshrc
+  i3_get_user_zshrc
+  i3_get_user_bpt_zsh_profile
+  i3_user_change_to_zsh
+  i3_user_correct_ownership
+  i3_user_cleanup
+  }
+
+i3_update_root_config_all () {
+  #i3_get_root_aptinstall
+  #i3_get_root_passwd
+  #i3_get_root_mkdirs
+  #i3_get_root_copy_home_kali
+  i3_get_root_xfce_powermanage
+  i3_get_root_i3config
+  i3_get_root_roficonfig
+  i3_get_root_i3status
+  i3_get_root_terminator
+  i3_get_root_alttab
+  i3_backup_lightdm
+  i3_get_root_lightdm
+  i3_get_root_bashrc
+  i3_backup_root_zshrc
+  i3_get_root_zshrc
+  i3_get_root_bpt_zsh_profile
+  i3_root_change_shell_to_zsh
+  i3_root_cleanup
+  }
+
+i3_fix_root () {
+  i3_get_root_aptinstall
+  i3_get_root_passwd
+  i3_get_root_mkdirs
+  i3_get_root_copy_home_kali
+  i3_get_root_bpt_zsh_profile
+  i3_get_root_xfce_powermanage
+  i3_get_root_i3config
+  i3_get_root_roficonfig
+  i3_get_root_i3status
+  i3_get_root_terminator
+  i3_get_root_alttab
+  i3_get_root_bashrc
+  i3_backup_root_zshrc
+  i3_get_root_zshrc
+  i3_backup_lightdm
+  i3_get_root_lightdm
+  i3_root_change_shell_to_zsh
+  i3_root_cleanup
   }
 
 i3_adbobe_source_code_pro_font (){    # Might use this function in pimpmykali.sh
   echo -e "\n  $greenplus install source-code-pro fonts"
   rm -rf /opt/source-code-pro
   mkdir -p /usr/share/fonts/opentype/font-adobe-source-code-pro
-  # Could change this to a driect WGET of the OTF Font and drop them in the right place..
-  # save all this mucking about
   git clone https://github.com/adobe-fonts/source-code-pro /opt/source-code-pro
   cp -f /opt/source-code-pro/OTF/*  /usr/share/fonts/opentype/font-adobe-source-code-pro
   fc-cache -fsv
@@ -352,7 +479,7 @@ i3_shutup_pcbeep () {                 # Might use this function in pimpmykali.sh
   # apt bad hash fix
   mkdir -p /etc/gcrypt
   echo -e "all" > /etc/gcrypt/hwf.deny
-}
+  }
 
 pimpmykali_all () {
   echo -e "\n  $greenplus executing pimpmykali.sh --all "
@@ -378,7 +505,7 @@ pimpmykali_all_your_upgrades_belong_to_me () {
   echo -e "\n  $greenplus executing pimpmykali.sh --bpt "
   sh -c '/opt/pimpmykali/pimpmykali.sh --bpt'
   exit_screen
-}
+  }
 
 run_far_far_away () {
   clear
@@ -406,7 +533,7 @@ run_i3_root_only (){
   i3_fix_root     # all functions for root are in this function
   eval wget $quiet $url -O $root_background
   exit_screen
-}
+  }
 
 run_i3_user () {
   i3_shutup_pcbeep
@@ -425,25 +552,16 @@ run_i3_user_only () {
   exit_screen
   }
 
-
 pimpmyi3_menu () {
   clear
   echo -e "$asciiart"
   echo -e "\n    Select an option from menu:                      Rev:$revision"
   echo -e "\n    1 - pimpmy-i3 for user $runner and run as $runner all the time"
-  echo -e "        i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
-  echo -e "        + lightdm autologin-user=$runner lightdm autologin-session=i3"
-  echo -e "        + all default base configs included in pimpmy-i3"
-  echo -e "        + pimpmykali --all and --bpt (bpt the_essentials)\n"
-  #
-  echo -e "    2 - pimpmy-i3 for user $finduser (NOT FOR ROOT) and run as $finduser all the time"
-  echo -e "        i3-gaps compton feh flameshot numlockx rofi terminator"
-  echo -e "        + lightdm autologin-user=$finduser lightdm autologin-session=i3"
-  echo -e "        + all default base configs included in pimpmy-i3"
-  echo -e "        + pimpmykali --all and --bpt (bpt the_essentials)"
-  echo -e "        #2 DO NOT USE FOR ROOT! if this says root your already root use #1!!\n"
+  echo -e "          (includes pimpmykali.sh --all and --bpt)"
+  echo -e "\n    2 - pimpmy-i3 for user $finduser (NOT FOR ROOT) and run as $finduser all the time"
+  echo -e "          (includes pimpmykali.sh --all and --bpt)"
   # menu option 3 is hearby dedicated to : BlindPenTester and shall remain for all time
-  echo -e "    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
+  echo -e "\n    3 - Im nuts! Give me both 1 + 2 and side order of fries! *voids warranty*"
   echo -e "        - Whatever you get you get Dewalt is NOT sorting it out!"
   echo -e "        - BlindPentester will provide 100% free in person technical support!"
   echo -e "        - everything listed above - Have fun! (you have been warned) \n"
@@ -452,6 +570,9 @@ pimpmyi3_menu () {
   echo -e "    5 - pimpmy-i3 for user $finduser without pimpmyakli.sh --all or --bpt"
   echo -e "        only runs pimpmy-i3.sh for user $finduser with no additional upgrades"
   echo -e "        #5 DO NOT USE FOR ROOT! if this says root your already root use #4!!\n"
+  echo -e "    Config File Update Menus: \n "
+  echo -e "      9 - User $finduser Config File Update Menu"
+  echo -e "      0 - User $runner Config File Update Menu * use this for configs if you run as root! * \n"
   echo -e "    -- Upgrade Only Options -- \n"
   echo -e "    P - Only pimpmykali --all"
   echo -e "    B - Only BlindPenTester the_essentials (pimpmykali --bpt)"
@@ -464,6 +585,8 @@ pimpmyi3_menu () {
     3) run_far_far_away ;;
     4) run_i3_root_only ;;
     5) run_i3_user_only ;;
+    0) pimpmyi3_update_root_configs_menu ;;
+    9) pimpmyi3_update_user_configs_menu ;;
   p|P) pimpmykali_all ;;
   b|B) pimpmykali_bpt ;;
   a|A) pimpmykali_all_your_upgrades_belong_to_me ;; # What you thought I was kidding?
@@ -471,6 +594,73 @@ pimpmyi3_menu () {
     *) pimpmyi3_menu ;;
   esac
   }
+
+pimpmyi3_update_root_configs_menu () {
+    clear
+    echo -e "$asciiart"
+    echo -e "\n    $runner Config file update menu:                    Rev:$revision"
+    echo -e "    1 - Update i3 Config"
+    echo -e "    2 - Update Only Rofi config"
+    echo -e "    3 - Update Only Terminator config"
+    echo -e "    4 - Update Only i3status.conf"
+    echo -e "    5 - Update Only i3-atl-tab.py"
+    echo -e "    6 - Update Only xfce power management"
+    echo -e "    7 - Update Only lightdm.conf"
+    echo -e "    8 - Update Only .bashrc"
+    echo -e "    9 - Update Only .zshrc and change shell to zsh\n"
+    echo -e "    0 - Update ALL Configs listed above\n"
+    read -n1 -p "    Enter option 0-9, M for main menu, or press X to exit: " rootconfig_menuinput
+
+    case $rootconfig_menuinput in
+      1) i3_get_root_i3config; exit_screen ;;
+      2) i3_get_root_roficonfig; exit_screen ;;
+      3) i3_get_root_terminator; exit_screen ;;
+      4) i3_get_root_i3status; exit_screen ;;
+      5) i3_get_root_alttab; exit_screen ;;
+      6) i3_get_root_xfce_powermanage; exit_screen ;;
+      7) i3_backup_lightdm; i3_get_root_lightdm; i3_root_cleanup; exit_screen ;;
+      8) i3_get_root_bashrc; i3_root_cleanup; exit_screen;;
+      9) i3_backup_root_zshrc; i3_get_root_zshrc; i3_get_root_bpt_zsh_profile; i3_root_change_shell_to_zsh; exit_screen ;;
+      0) i3_update_root_config_all; exit_screen ;;
+    m|M) pimpmyi3_menu ;;
+    x|X) echo -e "\n\n Exiting pimpmy-i3.sh - Happy Hacking! \n"; exit;;
+      *) pimpmyi3_menu ;;
+    esac
+    }
+
+pimpmyi3_update_user_configs_menu () {
+    clear
+    echo -e "$asciiart"
+    echo -e "\n    $finduser Config file update menu:                    Rev:$revision"
+    echo -e "    1 - Update i3 Config"
+    echo -e "    2 - Update Only Rofi config"
+    echo -e "    3 - Update Only Terminator config"
+    echo -e "    4 - Update Only i3status.conf"
+    echo -e "    5 - Update Only i3-atl-tab.py"
+    echo -e "    6 - Update Only xfce power management"
+    echo -e "    7 - Update Only lightdm.conf"
+    echo -e "    8 - Update Only .bashrc"
+    echo -e "    9 - Update Only .zshrc and change shell to zsh\n"
+    echo -e "    0 - Update ALL Configs listed above\n"
+    read -n1 -p "    Enter option 0-9, M for main menu, or press X to exit: " userconfig_menuinput
+
+    case $userconfig_menuinput in
+      1) i3_get_user_i3config; i3_user_correct_ownership; exit_screen ;;
+      2) i3_get_user_roficonfig; i3_user_correct_ownership; exit_screen ;;
+      3) i3_get_user_terminator; i3_user_correct_ownership; exit_screen ;;
+      4) i3_get_user_i3status; i3_user_correct_ownership; exit_screen ;;
+      5) i3_get_user_alttab; i3_user_correct_ownership; exit_screen ;;
+      6) i3_get_user_xfce_powermanage; i3_user_correct_ownership; exit_screen ;;
+      7) i3_user_backup_lightdm; i3_get_user_lightdm; i3_user_cleanup; exit_screen ;;
+      8) i3_user_bashrc; i3_user_correct_ownership; i3_user_cleanup; exit_screen ;;
+      9) i3_user_backup_zshrc; i3_get_user_zshrc; i3_get_user_bpt_zsh_profile; i3_user_change_to_zsh; i3_user_correct_ownership; exit_screen ;;
+      0) i3_update_root_config_all; exit_screen ;;
+    m|m) pimpmyi3_menu ;;
+    x|X) echo -e "\n\n Exiting pimpmy-i3.sh - Happy Hacking! \n"; exit;;
+      *) pimpmyi3_update_user_configs_menu ;;
+    esac
+    }
+
 
 check_arg () {
     if [ "$1" == "" ]
@@ -490,7 +680,7 @@ check_arg () {
 
 exit_screen () {
     #echo -e "$asciiart"
-    #echo -e "\n\n    All Done! Happy Hacking! \n"
+    echo -e "\n\n    pimpmy-i3.sh All Done! Happy Hacking! \n"
     exit
     }
 

@@ -1,0 +1,70 @@
+I3 Keyboard Layout/Shortcuts
+ * modkey by default is configured for alt if you want it changed to the
+   windows key, edit ~/.config/i3/config and change the line noted
+
+   This is not a Master Class in i3 keyboard shortcuts but more of a
+   general overview and a get you up and running quick example.
+
+   Most all of the keyboard shortcuts are standard i3 operations with a few
+   exceptions
+
+   Quick Shortcut keys have been added
+    modkey+ctrl+1 firefox
+    modkey+ctrl+2 burpsuite
+    modkey+ctrl+3 atom
+    modkey+ctrl+4 cherrytree
+    modkey+ctrl+5 thunar
+    modkey+ctrl+6 -- open/not configured
+    modkey+ctrl+7 -- open/not configured
+    modkey+ctrl+8 -- open/not configured
+    modkey+ctrl+9 -- open/not configured
+    modkey+ctrl+0 'msfconsole'
+
+  Open a terminal
+   modkey+enter          = Terminator Shell
+
+  Tilling Modes
+    modkey+H              = Horizontal Tile Mode
+    modkey+V              = Vertical Tile Mode
+
+  Sreenshot tool
+    modkey+printscreen    = Flameshot GUI (screenshot tool)
+      * must release modkey before gui will appear
+
+  Reload i3 configuration
+    modkey+shift+R        = reload i3 config
+
+  Virtual Desktops
+    modkey+NUMBER         = change to that virtual desktop #
+    modkey+shift+NUMBER   = move that window/tile to virtual desktop #
+
+  Quit an active window
+    modkey+shift+Q        = quits active window/tile
+
+  Select All Windows/Tiles
+    modkey+A              = Select all windows on that desktop
+    (handy with modkey+shift+Q to close all windows on that desktop)
+
+  Logoff/Shutdown/Reboot Menu
+    modkey+shift+E	      = logout/shutdown/reboot menu
+
+  Sane Alt+Tab (via i3-alt-tab.py)
+    modkey+tab            = tabs thru all active windows on that desktop
+    modkey+shift+tab      = tabs thru all active windows on all desktops
+
+  Moving Windows/Tiles around a desktop
+    modkey+arrow          = change active window/tile
+    modkey+shift+arrow    = move active window/tile
+    ctrl+arrow keys       = resize windows/tiles
+
+  Applications Menu
+    modkey+D              = rofi menu * select applications *
+
+  Useless Gaps Adjustment (space between windows/tiles)
+    modkey+shift+G        = Useless Gaps Inner or Outer Adjustment
+
+  Status Bar Toggle
+    modkey+M              = Hide or undhide status bar
+
+  Tabbed Mode (I personally dont use this one)
+    modkey+W              = Tabbed Window Mode
