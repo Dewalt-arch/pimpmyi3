@@ -1,4 +1,4 @@
-#pimpmyi3.sh (initial README.md) - script is not yet live on github
+# pimpmyi3.sh
 
 # revision 1.0.3
   - adding function and menu option to update your config files
