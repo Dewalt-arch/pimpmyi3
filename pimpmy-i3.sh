@@ -49,7 +49,7 @@ quiet=""
 
 # Configuration files moved to online storage
   # ~/.bashrc
-  raw_basrc="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/bash/bashrc"
+  raw_bashrc="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/bash/bashrc"
   # ~/.config/i3/
   raw_i3config="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/i3/config"
   raw_i3alttab="https://raw.githubusercontent.com/Dewalt-arch/pimpmyi3-config/main/i3/i3-alt-tab.py"
