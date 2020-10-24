@@ -266,7 +266,7 @@ i3_user_cleanup () {
   rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf
   echo -e "\n  $greenplus cleanup rm -f /tmp/tmp_lightdm.conf /tmp/path_export /tmp/lightdm.conf"
   }
-# end i3_get_root functions -----------------------------------------
+# end i3_get_user functions -----------------------------------------
 
 
 # begin i3_get_root functions ---------------------------------------
