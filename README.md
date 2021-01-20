@@ -8,7 +8,7 @@
 
   - i3-keyboard.txt has been included in the git clone of pimpmyi3
      - keyboard shortcut commands list (is not a 100% list of all i3 commands)  
-     - please use this as a reference for keyboard shortcuts 
+     - please use this as a reference for keyboard shortcuts
 
   - modkey+ctrl+NUMBER quicklaunch applications added to i3 config
     only 6 keys have been programmed with commonly used program
@@ -71,7 +71,6 @@
   - Menu Option 3... well your mileage may vary
 
 # Installation script
-  - #!/bin/bash
   - rm -rf pimpmyi3/
   - git clone https://github.com/Dewalt-arch/pimpmyi3
   - cd pimpmyi3
