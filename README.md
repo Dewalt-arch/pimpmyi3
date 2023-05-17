@@ -1,6 +1,6 @@
 # pimpmyi3.sh
 
-# revision 1.0.3
+# revision 1.0.3 
   - adding function and menu option to update your config files
     with the ones that are in the pimpmyi3-config github
     - Menu 9 is for user config files
