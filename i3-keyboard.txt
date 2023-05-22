@@ -1,4 +1,4 @@
-I3 Keyboard Layout/Shortcuts
+I3 Keyboard Layout/Shortcuts 
  * modkey by default is configured for alt if you want it changed to the
    windows key, edit ~/.config/i3/config and change the line noted
 
