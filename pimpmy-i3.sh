@@ -148,7 +148,7 @@ i3_user_apt_install () {
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated "
-  apt install -y i3-gaps compton feh flameshot numlockx rofi terminator $silent
+  apt install -y kali-desktop-i3-gaps compton feh flameshot numlockx rofi terminator $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator"
   }
 
@@ -276,7 +276,7 @@ i3_get_root_aptinstall () {
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated"
-  apt install -y i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
+  apt install -y kali-desktop-i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
   echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
   }
 
