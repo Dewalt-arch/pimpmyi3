@@ -2,6 +2,8 @@
 #
 # pimpmy-i3.sh
 # Author : Dewalt
+#
+# revision 1.0.1 
 # git clone https://github.com/Dewalt-arch/pimpmyi3
 # I didnt write this for you I wrote this for me,
 # If you dont like it! DONT COMPLAIN ABOUT IT!
@@ -12,7 +14,7 @@
 # WARNING: THIS WILL OVERWRITE ANY EXISTING CONFIGURATIONS!
 # ~/.config/i3/config /etc/i3status.conf ~/.config/rofi/config
 # /etc/i3status.conf and /usr/bin/i3-alt-tab.py
-# i3-gaps terminator rofi numlockx flameshot compton feh
+# i3-gaps terminator rofi numlockx flameshot feh
 #
 # See README.md for full details
 # Standard Disclaimer : Author assumes no liability for any damages
@@ -148,8 +150,8 @@ i3_user_apt_install () {
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated "
-  apt install -y kali-desktop-i3-gaps compton feh flameshot numlockx rofi terminator $silent
-  echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator"
+  apt install -y kali-desktop-i3-gaps feh flameshot numlockx rofi terminator $silent
+  echo -e "\n  $greenplus installed: i3-gaps feh flameshot numlockx rofi terminator"
   }
 
 i3_get_user_zshrc (){
@@ -276,8 +278,8 @@ i3_get_root_aptinstall () {
   apt update $silent
   apt -y --fix-broken install $silent
   echo -e "\n  $greenplus apt updated"
-  apt install -y kali-desktop-i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login $silent
-  echo -e "\n  $greenplus installed: i3-gaps compton feh flameshot numlockx rofi terminator kali-root-login"
+  apt install -y kali-desktop-i3-gaps feh flameshot numlockx rofi terminator kali-root-login $silent
+  echo -e "\n  $greenplus installed: i3-gaps feh flameshot numlockx rofi terminator kali-root-login"
   }
 
 i3_get_root_passwd () {
